@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.1"
+	client="site"
+	method="upgrade">
+	<name>mod_eiko_last</name>
+	<creationDate>01.01.2015</creationDate>
+    <copyright>Copyright (C) 2014. Alle Rechte vorbehalten.</copyright>
+    <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
+    <author>Ralf Meyer</author>
+    <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
+    <authorUrl>http://einsatzkomponente.de</authorUrl>
+	<version>1.0.2</version>
+
+	<description>Modul zur Anzeige der letzten Einsatzberichte auf einer Modulposition</description>
+	<files>
+		<filename module="mod_eiko_last">mod_eiko_last.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			
+			
+							
+			<field name="orga" type="sql" class="inputbox"
+            label="Filter Organisation :"
+            description="Wählen Sie hier die anzuzeigenden Organisationen aus" 
+            query="SELECT 0 AS `id`,  '-- alle anzeigen --' AS `name` UNION SELECT `name`, `name` FROM `#__eiko_organisationen` WHERE `state`='1' ORDER BY `name` ASC" 
+			key_field="name" 
+			value_field="name"
+			/> 
+			
+				<field name="count" type="list" default="3" label="Wieviele Einsätze sollen angezeigt werden ?" description="">
+  					<option value="1">1 Einsatz</option>
+  					<option value="2">2 Einsätze</option>
+  					<option value="3">3 Einsätze</option>
+  					<option value="4">4 Einsätze</option>
+				</field>	
+						
+					
+				<field name="title" type="list" default="einsatzart" label="Was soll als Überschrift angezeigt werden ?" description="">
+  					<option value="einsatzort">Einsatzort</option>
+  					<option value="einsatzart">Einsatzart</option>
+  					<option value="kurzbericht">Kurzbericht</option>
+  					<option value="datum">Datum</option>
+  					<option value="datum_uhrzeit">Datum + Uhrzeit</option>
+  					<option value="nichts">Nichts</option>
+				</field>
+					
+				<field
+					name="titel_zusatz"
+					type="text"
+					default=""
+            		filter="raw"
+					label="Titel-Zusatztext "
+					 
+					description="z.b.Einsatzinfo : (Es können auch HTML-Tags eingesetzt werden !" />
+
+				<field
+					name="image"
+					type="radio"
+					class="btn-group"
+					label="Einsatzfoto anzeigen ?"
+					description=""
+					default="1">
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				
+				<field
+					name="image_width"
+					type="text"
+					default="90%"
+					label="Breite der Bilder "
+					description="z.b. 300px , 100% oder Feld frei" />
+					
+				<field
+					name="css"
+					type="textarea" rows="10"
+					label="CSS-Style"
+					default=".eiko_last_div {
+border:0px #666666 solid; 
+margin-left:10px; 
+margin-bottom:10px; }
+
+.eiko_last_title h1,
+.eiko_last_address,
+.eiko_last_summary,
+.eiko_last_text,
+.eiko_last_image,
+.eiko_last_date,
+.eiko_last_data,
+.eiko_last_readon {
+margin-left:10px;}
+
+.eiko_last_readon_link { }
+"
+					description="Anpassen des CSS-Style" />
+				
+				<field name="content" type="list" default="einsatzort" label="Was soll als Content-Text angezeigt werden ?" description="">
+  					<option value="einsatzort">Einsatzort</option>
+  					<option value="einsatzart">Einsatzart</option>
+  					<option value="kurzbericht">Kurzbericht</option>
+  					<option value="datum">Datum</option>
+  					<option value="datum_uhrzeit">Datum + Uhrzeit</option>
+  					<option value="bericht">Einsatzbericht</option>
+  					<option value="nichts">Nichts</option>
+				</field>	
+				
+				<field
+					name="readon"
+					type="text"
+					default="weiterlesen"
+					label="Weiterlesen-Text "
+					description="z.b. weiterlesen, mehr Info's, zur Detailseite" />
+					
+				<field
+					name="char_desc"
+					type="text"
+					default="100"
+					label="Anzahl max. Zeichen Bericht :"
+					description="" />
+				
+				<field
+					name="char_summary"
+					type="text"
+					default="30"
+					label="Anzahl max. Zeichen Kurz-Bericht :"
+					description="" />
+				
+				
+<field name="mymenuitem" type="menuitem" default="" label="Menüeintrag für die Einsatzübersicht" description="Wenn kein default-Layout benutzt wird, bitte unbedingt den Menüeintrag für die Einsatzübersicht hier festlegen" />
+				
+				<field name="backgroundimage" type="media"
+					label="Backgound Image" description="" />
+			</fieldset>
+			<fieldset
+				name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
