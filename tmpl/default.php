@@ -54,36 +54,38 @@ $counter = count($reports);
 
 ?>
 
-<style type="text/css"><?php echo $params->get('css');?></style>
+<style type="text/css">
+
+<?php echo $params->get('css');?>
+</style>
 
 <?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
-<<?php echo $params->get('module_tag');?> class="eiko_last <?php echo $moduleclass_sfx ?>" 
+<<?php echo $params->get('module_tag');?> class="eiko_last<?php echo $moduleclass_sfx ?>" 
 <?php else:?>
-<div class="eiko_last <?php echo $moduleclass_sfx ?>" 
+<div class="eiko_last<?php echo $moduleclass_sfx ?>" 
 <?php endif; ?>
 
 <?php if ($params->get('backgroundimage')) : ?> style="background-image:url(<?php echo $params->get('backgroundimage');?>)"<?php endif;?> >
 
+<table border="1" class="eiko_last_div">
 
 <?php
 $a = 0;
 while($a < $counter)
    {
+
 $curTime = strtotime($reports[$a]->date1); 
 $reports[$a]->desc = (strlen($reports[$a]->desc) > $params->get('char_desc','100')) ? substr($reports[$a]->desc,0,strrpos(substr($reports[$a]->desc,0,$params->get('char_desc','100')+1),' ')).' ...' : $reports[$a]->desc;
 $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summary','30')) ? substr($reports[$a]->summary,0,strrpos(substr($reports[$a]->summary,0,$params->get('char_summary','30')+1),' ')).' ...' : $reports[$a]->summary;
    ?>
    
    
-    
-    <div class="eiko_last_div">   <!--CSS-Class hinzufügen !!-->
-  
-    <?php if ($title=="einsatzort"):?>
-    <p class="eiko_last_address" ><?php echo $params->get('titel_zusatz').$reports[$a]->address;?></p>
+    <tr>
+    	<th>
+    	<?php if ($title=="einsatzort"):?><span class="eiko_last_address" ><?php echo $params->get('titel_zusatz').$reports[$a]->address;?></span>
 	<?php endif;?>
-    
     <?php if ($title=="kurzbericht"):?>
-    <p class="eiko_last_summary" ><?php echo $params->get('titel_zusatz').$reports[$a]->summary;?></p>
+    <span class="eiko_last_summary" ><?php echo $params->get('titel_zusatz').$reports[$a]->summary;?></span>
 	<?php endif;?>
     
     <?php if ($title=="einsatzart"):?>
@@ -95,7 +97,6 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
     </<?php echo $params->get('header_tag');?>>
 	<?php endif;?>
 	<?php endif;?>
-    
     <?php if ($title=="datum"):?>
 	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     <<?php echo $params->get('header_tag');?>>
@@ -105,7 +106,6 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
     </<?php echo $params->get('header_tag');?>>
 	<?php endif;?>
 	<?php endif;?>
-    
     <?php if ($title=="datum_uhrzeit"):?>
 	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     <<?php echo $params->get('header_tag');?>>
@@ -115,8 +115,10 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
     </<?php echo $params->get('header_tag');?>>
 	<?php endif;?>
 	<?php endif;?>
-
-    <?php if ($foto=="1"):?>
+	</th>
+</tr>
+<tr><td>
+	<?php if ($foto=="1"):?>
     <?php if ($reports[$a]->foto):?>
     <?php if ($params->get('image_width')):?>
     <img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="<?php echo $params->get('image_width');?>" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>">
@@ -144,26 +146,20 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
     <?php if ($text=="bericht"):?> 
     <span class="eiko_last_text"><?php echo strip_tags($reports[$a]->desc);?></span>
 	<?php endif;?>
-    
-	<br/>
-           <a class="eiko_last_readon_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_readon"><?php echo $params->get('readon');?></span></a>
+	
+	
+    	<br /><a class="eiko_last_readon_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_readon"><?php echo $params->get('readon');?></span></a></td>
+    </tr>
 
-    </div>
+
+    
    <?php
    $a++;
    }
 ?>
-    
-
-    
-    
-    
-    
-    
+   </table>
 <?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
 </<?php echo $params->get('module_tag');?>>
 <?php else:?>
 </div>
 <?php endif;?>
-
-
