@@ -28,14 +28,14 @@ $orga = $params->get('orga');
 
 if ($orga == '-- alle anzeigen --') :
 		// Funktion : letze x Einsatzdaten laden
-		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.summary,r.auswahlorga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.auswahlorga,r.state FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.title LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
+		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.summary,r.auswahlorga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.auswahlorga,r.state,rd.title as einsatzart FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.title LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
 		$db	= JFactory::getDBO();
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
 		$reports = $result;
 else:
 		// Funktion : letze x Einsatzdaten laden
-		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.summary,r.auswahlorga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.auswahlorga,r.state FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.title LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE FIND_IN_SET("'.$orga.'", r.auswahlorga) and r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
+		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.summary,r.auswahlorga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.auswahlorga,r.state,rd.title as einsatzart FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.title LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE FIND_IN_SET("'.$orga.'", r.auswahlorga) and r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
 		$db	= JFactory::getDBO();
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
@@ -92,7 +92,7 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
 	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     <<?php echo $params->get('header_tag');?>>
 	<?php endif;?>
-	<?php echo '<span class="eiko_last_data" >'.$params->get('titel_zusatz').$reports[$a]->data1.'</span>';?>
+	<?php echo '<span class="eiko_last_data" >'.$params->get('titel_zusatz').$reports[$a]->einsatzart.'</span>';?>
 	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     </<?php echo $params->get('header_tag');?>>
 	<?php endif;?>
@@ -135,7 +135,7 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
     <span class="eiko_last_text"><?php echo $reports[$a]->summary;?></span>
 	<?php endif;?>
     <?php if ($text=="einsatzart"):?>
-    <span class="eiko_last_text"><?php echo $reports[$a]->data1;?></span>
+    <span class="eiko_last_text"><?php echo $reports[$a]->einsatzart;?></span>
 	<?php endif;?>
     <?php if ($text=="datum"):?>
     <span class="eiko_last_date"><?php echo date('d.m.Y ', $curTime);?></span>

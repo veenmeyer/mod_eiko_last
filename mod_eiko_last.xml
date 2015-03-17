@@ -5,13 +5,13 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>01.01.2015</creationDate>
+	<creationDate>17.03.2015</creationDate>
     <copyright>Copyright (C) 2014. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 
 	<description>Modul zur Anzeige der letzten Einsatzberichte auf einer Modulposition</description>
 	<files>
