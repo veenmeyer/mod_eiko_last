@@ -11,7 +11,7 @@
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 
 	<description>Modul zur Anzeige der letzten Einsatzberichte auf einer Modulposition</description>
 	<files>
@@ -29,8 +29,8 @@
 			<field name="orga" type="sql" class="inputbox"
             label="Filter Organisation :"
             description="Wählen Sie hier die anzuzeigenden Organisationen aus" 
-            query="SELECT 0 AS `id`,  '-- alle anzeigen --' AS `name` UNION SELECT `name`, `name` FROM `#__eiko_organisationen` WHERE `state`='1' ORDER BY `name` ASC" 
-			key_field="name" 
+            query="SELECT 0 AS `id`,  '-- alle anzeigen --' AS `name` UNION SELECT `id`, `name` FROM `#__eiko_organisationen` WHERE `state`='1' ORDER BY `name` ASC" 
+			key_field="id" 
 			value_field="name"
 			/> 
 			
