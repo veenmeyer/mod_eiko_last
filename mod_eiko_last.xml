@@ -5,13 +5,13 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>17.03.2015</creationDate>
+	<creationDate>13.04.2015</creationDate>
     <copyright>Copyright (C) 2014. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 
 	<description>Modul zur Anzeige der letzten Einsatzberichte auf einer Modulposition</description>
 	<files>
@@ -88,7 +88,8 @@
 border:0px #666666 solid; 
 margin-left:10px; 
 margin-bottom:10px; }
-
+eiko_last_table {
+border:0px;}
 .eiko_last_title h1,
 .eiko_last_address,
 .eiko_last_summary,

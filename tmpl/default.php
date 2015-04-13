@@ -59,15 +59,11 @@ $counter = count($reports);
 <?php echo $params->get('css');?>
 </style>
 
-<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
 <<?php echo $params->get('module_tag');?> class="eiko_last<?php echo $moduleclass_sfx ?>" 
-<?php else:?>
-<div class="eiko_last<?php echo $moduleclass_sfx ?>" 
-<?php endif; ?>
 
 <?php if ($params->get('backgroundimage')) : ?> style="background-image:url(<?php echo $params->get('backgroundimage');?>)"<?php endif;?> >
 
-<table border="1" class="eiko_last_div">
+<table class="eiko_last_table">
 
 <?php
 $a = 0;
@@ -89,31 +85,19 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
 	<?php endif;?>
     
     <?php if ($title=="einsatzart"):?>
-	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     <<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
 	<?php echo '<span class="eiko_last_data" >'.$params->get('titel_zusatz').$reports[$a]->einsatzart.'</span>';?>
-	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     </<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
 	<?php endif;?>
     <?php if ($title=="datum"):?>
-	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     <<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
 	<?php echo '<span class="eiko_last_date" >'.$params->get('titel_zusatz').date('d.m.Y ', $curTime).'</span>';?>
-	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     </<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
 	<?php endif;?>
     <?php if ($title=="datum_uhrzeit"):?>
-	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     <<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
 	<?php echo '<span class="eiko_last_date" >'.$params->get('titel_zusatz').date('d.m.Y ', $curTime).'um '.date('H:i', $curTime).' Uhr</span>';?>
-	<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
     </<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
 	<?php endif;?>
 	</th>
 </tr>
@@ -158,8 +142,4 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
    }
 ?>
    </table>
-<?php $version = new JVersion; if ($version->isCompatible('3.0')) :?>
 </<?php echo $params->get('module_tag');?>>
-<?php else:?>
-</div>
-<?php endif;?>
