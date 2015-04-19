@@ -5,7 +5,7 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>13.04.2015</creationDate>
+	<creationDate>19.04.2015</creationDate>
     <copyright>Copyright (C) 2014. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
