@@ -75,7 +75,7 @@ $reports[$a]->desc = (strlen($reports[$a]->desc) > $params->get('char_desc','100
 $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summary','30')) ? substr($reports[$a]->summary,0,strrpos(substr($reports[$a]->summary,0,$params->get('char_summary','30')+1),' ')).' ...' : $reports[$a]->summary;
    ?>
    
-   
+   <table class="eiko_last_tab">
     <tr>
     	<th>
     	<?php if ($title=="einsatzort"):?><span class="eiko_last_address" ><?php echo $params->get('titel_zusatz').$reports[$a]->address;?></span>
@@ -134,7 +134,7 @@ $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summ
 	
     	<br /><a class="eiko_last_readon_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_readon"><?php echo $params->get('readon');?></span></a></td>
     </tr>
-
+	</table>
 
     
    <?php
