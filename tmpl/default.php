@@ -56,15 +56,14 @@ $counter = count($reports);
 
 <style type="text/css">
 
-<?php echo $params->get('css');?>
+<?php echo $params->get('eiko_last_css');?>
 </style>
 
 <<?php echo $params->get('module_tag');?> class="eiko_last<?php echo $moduleclass_sfx ?>" 
-
 <?php if ($params->get('backgroundimage')) : ?> style="background-image:url(<?php echo $params->get('backgroundimage');?>)"<?php endif;?> >
 
 <table class="eiko_last_table">
-
+<tr><td>
 <?php
 $a = 0;
 while($a < $counter)
@@ -73,73 +72,51 @@ while($a < $counter)
 $curTime = strtotime($reports[$a]->date1); 
 $reports[$a]->desc = (strlen($reports[$a]->desc) > $params->get('char_desc','100')) ? substr($reports[$a]->desc,0,strrpos(substr($reports[$a]->desc,0,$params->get('char_desc','100')+1),' ')).' ...' : $reports[$a]->desc;
 $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summary','30')) ? substr($reports[$a]->summary,0,strrpos(substr($reports[$a]->summary,0,$params->get('char_summary','30')+1),' ')).' ...' : $reports[$a]->summary;
-   ?>
+
+$fields = str_replace(' ','',$params->get('fields'));
+$fields = explode(",",$fields);
+
+?>
+<table class="eiko_last_tab">
+<?php
+$count_fields = count($fields);
+$i = 0;
+while($i < $count_fields)
+   { 
+    	if (trim($fields[$i])=="Einsatzort"):?><tr class="eiko_last_einsatzort_tr"><td class="eiko_last_einsatzort_td"><span  class="eiko_last_einsatzort_span"><?php echo $params->get('einsatzort_zusatz').$reports[$a]->address;?></span></td></tr><?php endif;
+    	if (trim($fields[$i])=="Einsatzort_Link"):?><tr class="eiko_last_einsatzort_tr"><td class="eiko_last_einsatzort_td"><a class="eiko_last_einsatzort_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span  class="eiko_last_einsatzort_span"><?php echo $params->get('einsatzort_zusatz').$reports[$a]->address;?></span></a></td></tr><?php endif;
+		
+    	if (trim($fields[$i])=="Einsatzart"):?><tr class="eiko_last_einsatzart_tr"><td class="eiko_last_einsatzart_td"><span class="eiko_last_einsatzart_span"><?php echo $reports[$a]->einsatzart;?></span></td></tr><?php endif;
+    	if (trim($fields[$i])=="Einsatzart_Link"):?><tr class="eiko_last_einsatzart_tr"><td class="eiko_last_einsatzart_td"><a class="eiko_last_einsatzart_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_einsatzart_span"><?php echo $reports[$a]->einsatzart;?></span></a></td></tr><?php endif;
+		
+		if (trim($fields[$i])=="Kurzbericht"):?><tr class="eiko_last_kurzbericht_tr"><td class="eiko_last_kurzbericht_td"><span class="eiko_last_kurzbericht_span"><?php echo $reports[$a]->summary;?></span></td></tr><?php endif;
+		
+		if (trim($fields[$i])=="Datum"):?><tr class="eiko_last_datum_tr"><td class="eiko_last_datum_td"><span class="eiko_last_datum_span"><?php echo date('d.m.Y ', $curTime);?></span></td></tr><?php endif;
+		if (trim($fields[$i])=="Datum_Link"):?><tr class="eiko_last_datum_tr"><td class="eiko_last_datum_td"><a class="eiko_last_datum_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_datum_span"><?php echo date('d.m.Y ', $curTime);?></span></a></td></tr><?php endif;
+
+		if (trim($fields[$i])=="Datum_Uhrzeit"):?><tr class="eiko_last_datum_uhrzeit_tr"><td class="eiko_last_datum_uhrzeit_td"><span class="eiko_last_datum_uhrzeit_span"><?php echo date('d.m.Y ', $curTime).'um '.date('H:i', $curTime).' Uhr';?></span></td></tr><?php endif;
+		if (trim($fields[$i])=="Datum_Uhrzeit_Link"):?><tr class="eiko_last_datum_uhrzeit_tr"><td class="eiko_last_datum_uhrzeit_td"><a class="eiko_last_datum_uhrzeit_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_datum_uhrzeit_span"><?php echo date('d.m.Y ', $curTime).'um '.date('H:i', $curTime).' Uhr';?></span></a></td></tr><?php endif;
+		
+		if (trim($fields[$i])=="Weiterlesen"):?><tr class="eiko_last_weiterlesen_tr"><td class="eiko_last_weiterlesen_td"><a class="eiko_last_weiterlesen_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_weiterlesen_span"><?php echo $params->get('readon');?></span></a></td></tr><?php endif;
+
+		if (trim($fields[$i])=="Einsatzfoto"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></td></tr><?php endif;?><?php endif;
+		if (trim($fields[$i])=="Einsatzfoto_Link"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><a class="eiko_last_image_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></a></td></tr><?php endif;?><?php endif;
+
+		//echo $fields[$i].'<br/>';
+$i++;
+   }
+//$bodytag = str_replace("%body%", "schwarz", "<body text='%body%'>");
+
+?>
+</table>
+
+
    
-   <table class="eiko_last_tab">
-    <tr>
-    	<th>
-    	<?php if ($title=="einsatzort"):?><span class="eiko_last_address" ><?php echo $params->get('titel_zusatz').$reports[$a]->address;?></span>
-	<?php endif;?>
-    <?php if ($title=="kurzbericht"):?>
-    <span class="eiko_last_summary" ><?php echo $params->get('titel_zusatz').$reports[$a]->summary;?></span>
-	<?php endif;?>
-    
-    <?php if ($title=="einsatzart"):?>
-    <<?php echo $params->get('header_tag');?>>
-	<?php echo '<span class="eiko_last_data" >'.$params->get('titel_zusatz').$reports[$a]->einsatzart.'</span>';?>
-    </<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
-    <?php if ($title=="datum"):?>
-    <<?php echo $params->get('header_tag');?>>
-	<?php echo '<span class="eiko_last_date" >'.$params->get('titel_zusatz').date('d.m.Y ', $curTime).'</span>';?>
-    </<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
-    <?php if ($title=="datum_uhrzeit"):?>
-    <<?php echo $params->get('header_tag');?>>
-	<?php echo '<span class="eiko_last_date" >'.$params->get('titel_zusatz').date('d.m.Y ', $curTime).'um '.date('H:i', $curTime).' Uhr</span>';?>
-    </<?php echo $params->get('header_tag');?>>
-	<?php endif;?>
-	</th>
-</tr>
-<tr><td>
-	<?php if ($foto=="1"):?>
-    <?php if ($reports[$a]->foto):?>
-    <?php if ($params->get('image_width')):?>
-    <img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="<?php echo $params->get('image_width');?>" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>">
-	<?php endif;?>
-    <?php if ($params->get('!image_width')):?>
-    <img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>">
-	<?php endif;?>
-	<?php endif;?>
-	<?php endif;?>
-    <?php if ($text=="einsatzort"):?>
-    <span class="eiko_last_text"><?php echo $reports[$a]->address;?></span>
-	<?php endif;?>
-    <?php if ($text=="kurzbericht"):?>
-    <span class="eiko_last_text"><?php echo $reports[$a]->summary;?></span>
-	<?php endif;?>
-    <?php if ($text=="einsatzart"):?>
-    <span class="eiko_last_text"><?php echo $reports[$a]->einsatzart;?></span>
-	<?php endif;?>
-    <?php if ($text=="datum"):?>
-    <span class="eiko_last_date"><?php echo date('d.m.Y ', $curTime);?></span>
-	<?php endif;?>
-    <?php if ($text=="datum_uhrzeit"):?>
-    <span class="eiko_last_date"><?php echo date('d.m.Y ', $curTime).'um '.date('H:i', $curTime).' Uhr';?></span>
-	<?php endif;?>
-    <?php if ($text=="bericht"):?> 
-    <span class="eiko_last_text"><?php echo strip_tags($reports[$a]->desc);?></span>
-	<?php endif;?>
-	
-	
-    	<br /><a class="eiko_last_readon_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_readon"><?php echo $params->get('readon');?></span></a></td>
-    </tr>
-	</table>
 
     
    <?php
    $a++;
    }
 ?>
-   </table>
+   </td></tr></table>
 </<?php echo $params->get('module_tag');?>>

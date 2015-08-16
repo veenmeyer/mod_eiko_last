@@ -5,15 +5,16 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>09.08.2015</creationDate>
-    <copyright>Copyright (C) 2014. Alle Rechte vorbehalten.</copyright>
+	<creationDate>16.08.2015</creationDate>
+    <copyright>Copyright (C) 2015. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>1.0.6</version>
+	<version>2.0</version>
 
-	<description>Modul zur Anzeige der letzten Einsatzberichte auf einer Modulposition</description>
+	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/>Beschreibung:<br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>Einsatzart, Einsatzart_Link, Einsatzfoto, Einsatzfoto_Link, Datum, Datum_Link, Datum_Uhrzeit_Link, Einsatzort,  Einsatzort_Link, Weiterlesen<br/>mehr Info's auf www.einsatzkomponente.de</div>
+	]]></description>
 	<files>
 		<filename module="mod_eiko_last">mod_eiko_last.php</filename>
 		<filename>index.html</filename>
@@ -34,86 +35,73 @@
 			value_field="name"
 			/> 
 			
-				<field name="count" type="list" default="3" label="Wieviele Einsätze sollen angezeigt werden ?" description="">
-  					<option value="1">1 Einsatz</option>
-  					<option value="2">2 Einsätze</option>
-  					<option value="3">3 Einsätze</option>
-  					<option value="4">4 Einsätze</option>
-				</field>	
-						
-					
-				<field name="title" type="list" default="einsatzart" label="Was soll als Überschrift angezeigt werden ?" description="">
-  					<option value="einsatzort">Einsatzort</option>
-  					<option value="einsatzart">Einsatzart</option>
-  					<option value="kurzbericht">Kurzbericht</option>
-  					<option value="datum">Datum</option>
-  					<option value="datum_uhrzeit">Datum + Uhrzeit</option>
-  					<option value="nichts">Nichts</option>
-				</field>
+				<field name="count" type="integer" default="3" label="Wieviele Einsätze sollen angezeigt werden ?" description="" first="1" last="10" step="1" />	
+				
+				<field name="mymenuitem" type="menuitem" default="" label="Menüeintrag für die Einsatzübersicht" description="Wenn kein default-Layout benutzt wird, bitte unbedingt den Menüeintrag für die Einsatzübersicht hier festlegen" />
 					
 				<field
-					name="titel_zusatz"
+					name="einsatzort_zusatz"
 					type="text"
 					default=""
             		filter="raw"
-					label="Titel-Zusatztext "
+					label="Einsatzort-Zusatztext "
 					 
 					description="z.b.Einsatzinfo : (Es können auch HTML-Tags eingesetzt werden !" />
 
-				<field
-					name="image"
-					type="radio"
-					class="btn-group"
-					label="Einsatzfoto anzeigen ?"
-					description=""
-					default="1">
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
-				</field>
 				
 				<field
-					name="image_width"
-					type="text"
-					default="90%"
-					label="Breite der Bilder "
-					description="z.b. 300px , 100% oder Feld frei" />
-					
-				<field
-					name="css"
+					name="fields"
 					type="textarea" rows="10"
-					label="CSS-Style"
-					default=".eiko_last_div {
-border:0px #666666 solid; 
-margin-left:10px; 
-margin-bottom:10px; }
-eiko_last_table {
-border:0px;}
-.eiko_last_title h1,
-.eiko_last_address,
-.eiko_last_summary,
-.eiko_last_text,
-.eiko_last_image,
-.eiko_last_date,
-.eiko_last_data,
-.eiko_last_readon {
-margin-left:10px;}
+					label="Anzeige:"
+					default="Einsatzart_Link,
+					Einsatzfoto_Link,
+					Datum_Uhrzeit,
+					Einsatzort,
+					Weiterlesen"
+					description="Welche Informationen sollen angezeigt werden ?" />
 
-.eiko_last_readon_link { }
+				<field
+					name="eiko_last_css"
+					type="textarea" rows="10" 
+					label="CSS-Style"
+					default="
+.eiko_last_table {
+border:0px #666666 solid !important;
+display: table-cell !important;
+float: left !important;}
+
+.eiko_last_tab {
+border:1px #ffffff solid !important;
+margin-bottom:10px !important;}
+
+.eiko_last_einsatzart_span,
+.eiko_last_einsatzort_span,
+.eiko_last_weiterlesen_span,
+.eiko_last_datum_uhrzeit_span,
+.eiko_last_datum_span,
+.eiko_last_image  {
+padding-left:10px !important;}
+
+.eiko_last_image_td,
+.eiko_last_einsatzort_td,
+.eiko_last_einsatzart_td,
+.eiko_last_kurzbericht_td,
+.eiko_last_datum_td,
+.eiko_last_datum_uhrzeit_td,
+.eiko_last_weiterlesen_td
+ {width:100% !important;
+padding-right:20px !important;}
+
+.eiko_last_einsatzart_span {
+font-weight:bolder !important;
+font-size:xx-large !important;
+padding-top:10px !important;
+padding-bottom:10px !important;
+margin-top:10px !important;
+margin-bottom:10px !important;}
 "
 					description="Anpassen des CSS-Style" />
-				
-				<field name="content" type="list" default="einsatzort" label="Was soll als Content-Text angezeigt werden ?" description="">
-  					<option value="einsatzort">Einsatzort</option>
-  					<option value="einsatzart">Einsatzart</option>
-  					<option value="kurzbericht">Kurzbericht</option>
-  					<option value="datum">Datum</option>
-  					<option value="datum_uhrzeit">Datum + Uhrzeit</option>
-  					<option value="bericht">Einsatzbericht</option>
-  					<option value="nichts">Nichts</option>
-				</field>	
-				
+					
 				<field
 					name="readon"
 					type="text"
@@ -134,12 +122,9 @@ margin-left:10px;}
 					default="30"
 					label="Anzahl max. Zeichen Kurz-Bericht :"
 					description="" />
-				
-				
-<field name="mymenuitem" type="menuitem" default="" label="Menüeintrag für die Einsatzübersicht" description="Wenn kein default-Layout benutzt wird, bitte unbedingt den Menüeintrag für die Einsatzübersicht hier festlegen" />
-				
 				<field name="backgroundimage" type="media"
 					label="Backgound Image" description="" />
+					
 			</fieldset>
 			<fieldset
 				name="advanced">
