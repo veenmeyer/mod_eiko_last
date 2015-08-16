@@ -102,6 +102,9 @@ while($i < $count_fields)
 		if (trim($fields[$i])=="Einsatzfoto"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></td></tr><?php endif;?><?php endif;
 		if (trim($fields[$i])=="Einsatzfoto_Link"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><a class="eiko_last_image_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></a></td></tr><?php endif;?><?php endif;
 
+		if (trim($fields[$i])=="Datum_Einsatzart"):?><tr class="eiko_last_datum_einsatzart_tr"><td class="eiko_last_datum_einsatzart_td"><span class="eiko_last_datum_einsatzart_span"><?php echo date('d.m.Y ', $curTime);?> - <?php echo $reports[$a]->einsatzart;?></span></td></tr><?php endif;
+		if (trim($fields[$i])=="Datum_Einsatzart_Link"):?><tr class="eiko_last_datum_einsatzart_tr"><td class="eiko_last_datum_einsatzart_td"><a class="eiko_last_datum_einsatzart_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_datum_einsatzart_span"><?php echo date('d.m.Y ', $curTime);?> - <?php echo $reports[$a]->einsatzart;?></span></a></td></tr><?php endif;
+		
 		//echo $fields[$i].'<br/>';
 $i++;
    }
