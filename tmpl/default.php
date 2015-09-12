@@ -107,6 +107,9 @@ while($i < $count_fields)
 		
 		if (trim($fields[$i])=="Datum_Einsatzort"):?><tr class="eiko_last_datum_einsatzort_tr"><td class="eiko_last_datum_einsatzort_td"><span class="eiko_last_datum_einsatzort_span"><?php echo date('d.m.Y ', $curTime);?> - <?php echo $reports[$a]->address;?></span></td></tr><?php endif;
 		if (trim($fields[$i])=="Datum_Einsatzort_Link"):?><tr class="eiko_last_datum_einsatzort_tr"><td class="eiko_last_datum_einsatzort_td"><a class="eiko_last_datum_einsatzort_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_datum_einsatzort_span"><?php echo date('d.m.Y ', $curTime);?> - <?php echo $reports[$a]->address;?></span></a></td></tr><?php endif;
+
+		if (trim($fields[$i])=="Datum_Uhrzeit_Kurzbericht"):?><tr class="eiko_last_datum_uhrzeit_kurzbericht_tr"><td class="eiko_last_datum_uhrzeit_kurzbericht_td"><span class="eiko_last_datum_uhrzeit_kurzbericht_span"><?php echo date('d.m.Y ', $curTime);?> um <?php echo date('H:i', $curTime);?> Uhr <b><?php echo $reports[$a]->summary;?></b></span></td></tr><?php endif;
+		if (trim($fields[$i])=="Datum_Uhrzeit_Kurzbericht:Link"):?><tr class="eiko_last_datum_uhrzeit_kurzbericht_tr"><td class="eiko_last_datum_uhrzeit_kurzbericht_td"><span class="eiko_last_datum_uhrzeit_kurzbericht_span"><?php echo date('d.m.Y ', $curTime);?> um <?php echo date('H:i', $curTime);?> Uhr <a class="eiko_last_datum_einsatzort_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><b><?php echo $reports[$a]->summary;?></b></a></span></td></tr><?php endif;
 		
 		//echo $fields[$i].'<br/>';
 $i++;
