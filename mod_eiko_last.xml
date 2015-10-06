@@ -5,7 +5,7 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>12.09.2015</creationDate>
+	<creationDate>06.10.2015</creationDate>
     <copyright>Copyright (C) 2015. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
@@ -13,7 +13,7 @@
     <authorUrl>http://einsatzkomponente.de</authorUrl>
 	<version>2.0</version>
 
-	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/>Beschreibung:<br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>Einsatzart, Einsatzart_Link, Einsatzfoto, Einsatzfoto_Link, Datum, Datum_Link, Datum_Uhrzeit_Link, Einsatzort,  Einsatzort_Link, Datum_Einsatzart, Datum_Einsatzart_Link, Datum_Einsatzort, Datum_Einsatzort_Link,Datum_Uhrzeit_Kurzbericht, Datum_Uhrzeit_Kurzbericht_Link, Weiterlesen<br/>mehr Info's auf www.einsatzkomponente.de</div>
+	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/>Beschreibung:<br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>Einsatzart, Einsatzart_Link, Einsatzfoto, Einsatzfoto_Link, Datum, Datum_Link, Datum_Uhrzeit_Link, Einsatzort,  Einsatzort_Link, Datum_Einsatzart, Datum_Einsatzart_Link, Datum_Einsatzort, Datum_Einsatzort_Link,Datum_Uhrzeit_Kurzbericht, Datum_Uhrzeit_Kurzbericht_Link, Datum_Uhrzeit_Einsatzart_Einsatzort_Weiterlesen, Weiterlesen<br/>mehr Info's auf www.einsatzkomponente.de</div>
 	]]></description>
 	<files>
 		<filename module="mod_eiko_last">mod_eiko_last.php</filename>
@@ -82,6 +82,7 @@ margin-bottom:10px !important;}
 .eiko_last_datum_span,
 .eiko_last_datum_einsatzart_span,
 .eiko_last_datum_einsatzort_span,
+.eiko_last_datum_uhrzeit_einsatzart_einsatzort_weiterlesen_span,
 .eiko_last_image  {
 padding-left:10px !important;}
 
@@ -93,6 +94,7 @@ padding-left:10px !important;}
 .eiko_last_datum_einsatzart_td,
 .eiko_last_datum_einsatzort_td,
 .eiko_last_datum_uhrzeit_td,
+.eiko_last_datum_uhrzeit_einsatzart_einsatzort_weiterlesen_td,
 .eiko_last_weiterlesen_td
  {width:100% !important;
 padding-right:20px !important;}
