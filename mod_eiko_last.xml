@@ -5,13 +5,13 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>08.10.2015</creationDate>
+	<creationDate>19.11.2015</creationDate>
     <copyright>Copyright (C) 2015. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>2.0</version>
+	<version>2.01</version>
 
 	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/>Beschreibung:<br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>Einsatzart, Einsatzart_Link, Einsatzfoto, Einsatzfoto_Link, Datum, Datum_Link, Datum_Uhrzeit_Link, Einsatzort,  Einsatzort_Link, Datum_Einsatzart, Datum_Einsatzart_Link, Datum_Einsatzort, Datum_Einsatzort_Link,Datum_Uhrzeit_Kurzbericht, Datum_Uhrzeit_Kurzbericht_Link, Datum_Uhrzeit_Einsatzart_Einsatzort_Weiterlesen, Weiterlesen<br/>mehr Info's auf www.einsatzkomponente.de</div>
 	]]></description>
@@ -175,4 +175,10 @@ margin-bottom:10px !important;}
 			</fieldset>
 		</fields>
 	</config>
+	
+<!-- UPDATESERVER DEFINITION -->
+	<updateservers>
+		<!-- Note: No spaces or linebreaks allowed between the server tags -->
+		<server type="extension" priority="1" name="mod_eiko_last">http://www.feuerwehr-veenhusen.de/update/com_einsatzkomponente-update.xml</server>
+	</updateservers>
 </extension>
