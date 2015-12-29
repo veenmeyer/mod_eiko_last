@@ -5,15 +5,36 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>19.11.2015</creationDate>
+	<creationDate>2015-12-29</creationDate>
     <copyright>Copyright (C) 2015. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>2.01</version>
+	<version>2.02</version>
 
-	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/>Beschreibung:<br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>Einsatzart, Einsatzart_Link, Einsatzfoto, Einsatzfoto_Link, Datum, Datum_Link, Datum_Uhrzeit_Link, Einsatzort,  Einsatzort_Link, Datum_Einsatzart, Datum_Einsatzart_Link, Datum_Einsatzort, Datum_Einsatzort_Link,Datum_Uhrzeit_Kurzbericht, Datum_Uhrzeit_Kurzbericht_Link, Datum_Uhrzeit_Einsatzart_Einsatzort_Weiterlesen, Weiterlesen<br/>mehr Info's auf www.einsatzkomponente.de</div>
+	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/><b>Beschreibung:</b><br/><br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>
+	<ul>
+	<li>Einsatzart</li>
+	<li>Einsatzart_Link</li>
+	<li>Einsatzfoto</li>
+	<li>Einsatzfoto_Link</li>
+	<li>Datum</li>
+	<li>Datum_Link</li>
+	<li>Datum_Uhrzeit_Link</li>
+	<li>Einsatzort</li>
+	<li>Einsatzort_Link</li>
+	<li>Datum_Einsatzart</li>
+	<li>Datum_Einsatzart_Link</li>
+	<li>Datum_Einsatzort</li>
+	<li>Datum_Einsatzort_Link</li>
+	<li>Datum_Uhrzeit_Kurzbericht</li>
+	<li>Datum_Uhrzeit_Kurzbericht_Link</li>
+	<li>Datum_Uhrzeit_Einsatzart_Einsatzort_Weiterlesen</li>
+	<li>Datum_Einsatzart_Kurzbericht</li>
+	<li>Weiterlesen</li>
+	</ul>
+	<br/>mehr Info's auf www.einsatzkomponente.de</div>
 	]]></description>
 	<files>
 		<filename module="mod_eiko_last">mod_eiko_last.php</filename>
