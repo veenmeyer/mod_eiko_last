@@ -100,7 +100,8 @@ margin-bottom:10px !important;}
 
 .eiko_last_einsatzart_span,
 .eiko_last_einsatzort_span,
-.eiko_last_weiterlesen_span,
+.eiko_last_einsatzart_span,
+.eiko_last_kurzbericht_span,
 .eiko_last_datum_uhrzeit_span,
 .eiko_last_datum_span,
 .eiko_last_datum_einsatzart_span,
