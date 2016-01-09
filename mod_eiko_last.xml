@@ -5,18 +5,20 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>2015-12-29</creationDate>
+	<creationDate>2016-01-09</creationDate>
     <copyright>Copyright (C) 2015. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>2.02</version>
+	<version>2.03</version>
 
 	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/><b>Beschreibung:</b><br/><br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>
 	<ul>
 	<li>Einsatzart</li>
 	<li>Einsatzart_Link</li>
+	<li>Kurzbericht</li>
+	<li>Kurzbericht_Link</li>
 	<li>Einsatzfoto</li>
 	<li>Einsatzfoto_Link</li>
 	<li>Datum</li>
