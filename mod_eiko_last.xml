@@ -34,6 +34,7 @@
 	<li>Datum_Uhrzeit_Kurzbericht_Link</li>
 	<li>Datum_Uhrzeit_Einsatzart_Einsatzort_Weiterlesen</li>
 	<li>Datum_Einsatzart_Kurzbericht</li>
+	<li>Einsatznummer</li>
 	<li>Weiterlesen</li>
 	</ul>
 	<br/>mehr Info's auf www.einsatzkomponente.de</div>
@@ -81,6 +82,7 @@
 					Einsatzfoto_Link,
 					Datum_Uhrzeit,
 					Einsatzort,
+					Einsatznummer,
 					Weiterlesen"
 					description="Welche Informationen sollen angezeigt werden ?" />
 
@@ -119,7 +121,8 @@ padding-left:10px !important;}
 .eiko_last_datum_einsatzort_td,
 .eiko_last_datum_uhrzeit_td,
 .eiko_last_datum_uhrzeit_einsatzart_einsatzort_weiterlesen_td,
-.eiko_last_weiterlesen_td
+.eiko_last_weiterlesen_td,
+.eiko_last_counter_td
  {width:100% !important;
 padding-right:20px !important;}
 
@@ -130,6 +133,8 @@ padding-top:10px !important;
 padding-bottom:10px !important;
 margin-top:10px !important;
 margin-bottom:10px !important;}
+
+.eiko_last_counter_span {font-size: 12px;}
 "
 					description="Anpassen des CSS-Style" />
 					

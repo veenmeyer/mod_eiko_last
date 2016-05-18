@@ -118,6 +118,10 @@ while($i < $count_fields)
 
 		if (trim($fields[$i])=="Weiterlesen"):?><tr class="eiko_last_weiterlesen_tr"><td class="eiko_last_weiterlesen_td"><a class="eiko_last_weiterlesen_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_weiterlesen_span"><?php echo $params->get('readon');?></span></a></td></tr><?php endif;
 
+		if (trim($fields[$i])=="Einsatznummer"):?><tr class="eiko_last_counter_tr">
+			<td class="eiko_last_counter_td"><span class="eiko_last_counter_span">
+			<?php echo count(EinsatzkomponenteHelper::count_einsatz_daten_bestimmtes_jahr(date('Y')));?>
+			</span></td></tr><?php endif;
 		//echo $fields[$i].'<br/>';
 $i++;
    }
