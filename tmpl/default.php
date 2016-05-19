@@ -120,7 +120,7 @@ while($i < $count_fields)
 
 		if (trim($fields[$i])=="Einsatznummer"):?><tr class="eiko_last_counter_tr">
 			<td class="eiko_last_counter_td"><span class="eiko_last_counter_span">
-			<?php echo count(EinsatzkomponenteHelper::count_einsatz_daten_bestimmtes_jahr(date('Y')));?>
+			<?php echo EinsatzkomponenteHelper::ermittle_einsatz_nummer($curTime);?>
 			</span></td></tr><?php endif;
 		//echo $fields[$i].'<br/>';
 $i++;
