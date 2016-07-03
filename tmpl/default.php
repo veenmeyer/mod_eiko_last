@@ -83,7 +83,7 @@ $count_fields = count($fields);
 $i = 0;
 while($i < $count_fields)
    { 
-    	if (trim($fields[$i])=="Kurzbericht_Link"):?><tr class="eiko_last_kurzbericht_tr"><td class="eiko_last_kurzbericht_td"><a class="eiko_last_kurzbericht_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span  class="eiko_last_kurzbericht_span"><?php $reports[$a]->summary;?></span></a></td></tr><?php endif;
+    	if (trim($fields[$i])=="Kurzbericht_Link"):?><tr class="eiko_last_kurzbericht_tr"><td class="eiko_last_kurzbericht_td"><a class="eiko_last_kurzbericht_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span  class="eiko_last_kurzbericht_span"><?php echo $reports[$a]->summary;?></span></a></td></tr><?php endif;
 		
     	if (trim($fields[$i])=="Einsatzort"):?><tr class="eiko_last_einsatzort_tr"><td class="eiko_last_einsatzort_td"><span  class="eiko_last_einsatzort_span"><?php echo $params->get('einsatzort_zusatz').$reports[$a]->address;?></span></td></tr><?php endif;
     	if (trim($fields[$i])=="Einsatzort_Link"):?><tr class="eiko_last_einsatzort_tr"><td class="eiko_last_einsatzort_td"><a class="eiko_last_einsatzort_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span  class="eiko_last_einsatzort_span"><?php echo $params->get('einsatzort_zusatz').$reports[$a]->address;?></span></a></td></tr><?php endif;
@@ -120,7 +120,7 @@ while($i < $count_fields)
 
 		if (trim($fields[$i])=="Einsatznummer"):?><tr class="eiko_last_counter_tr">
 			<td class="eiko_last_counter_td"><span class="eiko_last_counter_span">
-			<?php echo EinsatzkomponenteHelper::ermittle_einsatz_nummer($curTime);?>
+			<?php echo '<small>#'.EinsatzkomponenteHelper::ermittle_einsatz_nummer($curTime).'/'.date('Y', $curTime).'</small>';?>
 			</span></td></tr><?php endif;
 		//echo $fields[$i].'<br/>';
 $i++;
