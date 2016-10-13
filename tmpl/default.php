@@ -23,19 +23,21 @@ $title = $params->get('title');
 $foto = $params->get('image');
 $text = $params->get('content');
 $mymenuitem = $params->get('mymenuitem'); // Menü-Eintrag
+$title = $params->get('zoom');
+
 
 $orga = $params->get('orga');
 
 if ($orga == '0') :
 		// Funktion : letze x Einsatzdaten laden
-		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.summary,r.auswahl_orga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.state,rd.title as einsatzart FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.id LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
+		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.gmap,r.summary,r.gmap_report_latitude,r.gmap_report_longitude,r.auswahl_orga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.state,rd.title as einsatzart FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.id LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
 		$db	= JFactory::getDBO();
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
 		$reports = $result;
 else:
 		// Funktion : letze x Einsatzdaten laden
-		$query = 'SELECT r.id,r.image as foto,rd.marker,r.address,r.summary,r.auswahl_orga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.state,rd.title as einsatzart FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.id LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE FIND_IN_SET("'.$orga.'", r.auswahl_orga) and r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
+		$query = 'SELECT r.id,r.gmap,r.gmap_report_latitude,r.gmap_report_longitude,r.image as foto,rd.marker,r.address,r.summary,r.auswahl_orga,r.desc,r.date1,r.data1,r.counter,r.alerting,r.presse,re.image,rd.list_icon,r.state,rd.title as einsatzart FROM #__eiko_einsatzberichte r JOIN #__eiko_einsatzarten rd ON r.data1 = rd.id LEFT JOIN #__eiko_alarmierungsarten re ON re.id = r.alerting WHERE FIND_IN_SET("'.$orga.'", r.auswahl_orga) and r.state = "1" and rd.state = "1" and re.state = "1" ORDER BY r.date1 DESC LIMIT '.$params->get('count').' ' ;
 		$db	= JFactory::getDBO();
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
@@ -68,7 +70,7 @@ $counter = count($reports);
 $a = 0;
 while($a < $counter)
    {
-
+//print_r ($reports[$a]);
 $curTime = strtotime($reports[$a]->date1); 
 $reports[$a]->desc = (strlen($reports[$a]->desc) > $params->get('char_desc','100')) ? substr($reports[$a]->desc,0,strrpos(substr($reports[$a]->desc,0,$params->get('char_desc','100')+1),' ')).' ...' : $reports[$a]->desc;
 $reports[$a]->summary = (strlen($reports[$a]->summary) > $params->get('char_summary','30')) ? substr($reports[$a]->summary,0,strrpos(substr($reports[$a]->summary,0,$params->get('char_summary','30')+1),' ')).' ...' : $reports[$a]->summary;
@@ -102,7 +104,21 @@ while($i < $count_fields)
 
 		if (trim($fields[$i])=="Einsatzfoto"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></td></tr><?php endif;?><?php endif;
 		if (trim($fields[$i])=="Einsatzfoto_Link"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><a class="eiko_last_image_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></a></td></tr><?php endif;?><?php endif;
+		
+		if (trim($fields[$i])=="Einsatzfoto_Karte"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></td></tr><?php else: if ($reports[$a]->gmap):?><tr class="eiko_last_karte_tr"><td class="eiko_last_karte_td"><img class="eiko_last_karte" src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&zoom=<?php echo $params->get('zoom','12');?>&size=600x300&maptype=roadmap&markers=color:red%7Clabel:x%7C<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&key=<?php echo $params->get('gmapkey','AIzaSyAuUYoAYc4DI2WBwSevXMGhIwF1ql6mV4E');?>" width="100%" alt="Einsatzkarte <?php echo $reports[$a]->summary;?>"></td></tr><?php endif;?><?php endif;?><?php endif;
+		
+		if (trim($fields[$i])=="Einsatzfoto_Karte_Link"): if ($reports[$a]->foto): ?><tr class="eiko_last_image_tr"><td class="eiko_last_image_td"><a class="eiko_last_image_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><img class="eiko_last_image" src="<?php echo $reports[$a]->foto;?>" width="100%" alt="Einsatzfoto <?php echo $reports[$a]->summary;?>"></a></td></tr><?php else: if ($reports[$a]->gmap):?><tr class="eiko_last_karte_tr"><td class="eiko_last_karte_td"><a class="eiko_last_karte_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><img class="eiko_last_karte" src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&zoom=<?php echo $params->get('zoom','12');?>&size=600x300&maptype=roadmap&markers=color:red%7Clabel:x%7C<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&key=<?php echo $params->get('gmapkey','AIzaSyAuUYoAYc4DI2WBwSevXMGhIwF1ql6mV4E');?>" width="100%" alt="Einsatzkarte <?php echo $reports[$a]->summary;?>"></a></td></tr><?php endif;?><?php endif;?><?php endif;
+		
+		
+		
+		if (trim($fields[$i])=="Einsatzkarte"):?><tr class="eiko_last_karte_tr"><td class="eiko_last_karte_td"><img class="eiko_last_karte" src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&zoom=<?php echo $params->get('zoom','12');?>&size=600x300&maptype=roadmap
+&markers=color:red%7Clabel:x%7C<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&key=<?php echo $params->get('gmapkey','AIzaSyAuUYoAYc4DI2WBwSevXMGhIwF1ql6mV4E');?>" width="100%" alt="Einsatzkarte <?php echo $reports[$a]->summary;?>"></td></tr><?php endif;
 
+		if (trim($fields[$i])=="Einsatzkarte_Link"): ?><tr class="eiko_last_karte_tr"><td class="eiko_last_karte_td"><a class="eiko_last_karte_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><img class="eiko_last_karte" src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&zoom=<?php echo $params->get('zoom','12');?>&size=600x300&maptype=roadmap
+&markers=color:red%7Clabel:x%7C<?php echo $reports[$a]->gmap_report_latitude;?>,<?php echo $reports[$a]->gmap_report_longitude;?>&key=<?php echo $params->get('gmapkey','AIzaSyAuUYoAYc4DI2WBwSevXMGhIwF1ql6mV4E');?>" width="100%" alt="Einsatzkarte <?php echo $reports[$a]->summary;?>"></a></td></tr><?php endif;
+		
+		
+		
 		if (trim($fields[$i])=="Datum_Einsatzart"):?><tr class="eiko_last_datum_einsatzart_tr"><td class="eiko_last_datum_einsatzart_td"><span class="eiko_last_datum_einsatzart_span"><?php echo date('d.m.Y ', $curTime);?> - <?php echo $reports[$a]->einsatzart;?></span></td></tr><?php endif;
 		if (trim($fields[$i])=="Datum_Einsatzart_Link"):?><tr class="eiko_last_datum_einsatzart_tr"><td class="eiko_last_datum_einsatzart_td"><a class="eiko_last_datum_einsatzart_link" href="<?php echo JRoute::_('index.php?option=com_einsatzkomponente&Itemid='.$mymenuitem.'&view=einsatzbericht&id=' . (int)$reports[$a]->id); ?>"><span class="eiko_last_datum_einsatzart_span"><?php echo date('d.m.Y ', $curTime);?> - <?php echo $reports[$a]->einsatzart;?></span></a></td></tr><?php endif;
 		

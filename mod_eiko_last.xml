@@ -5,13 +5,13 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>2016-07-03</creationDate>
-    <copyright>Copyright (C) 2015. Alle Rechte vorbehalten.</copyright>
+	<creationDate>2016-10-13</creationDate>
+    <copyright>Copyright (C) 2016. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
     <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>2.05</version>
+	<version>2.06</version>
 
 	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/><b>Beschreibung:</b><br/><br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>
 	<ul>
@@ -21,6 +21,10 @@
 	<li>Kurzbericht_Link</li>
 	<li>Einsatzfoto</li>
 	<li>Einsatzfoto_Link</li>
+	<li>Einsatzfoto_Karte</li>
+	<li>Einsatzfoto__Karte_Link</li>
+	<li>Einsatzkarte</li>
+	<li>Einsatzkarte_Link</li>
 	<li>Datum</li>
 	<li>Datum_Link</li>
 	<li>Datum_Uhrzeit_Link</li>
@@ -79,7 +83,7 @@
 					type="textarea" rows="10"
 					label="Anzeige:"
 					default="Einsatzart_Link,
-					Einsatzfoto_Link,
+					Einsatzfoto_Karte_Link,
 					Datum_Uhrzeit,
 					Einsatzort,
 					Einsatznummer,
@@ -161,6 +165,33 @@ margin-bottom:10px !important;}
 				<field name="backgroundimage" type="media"
 					label="Backgound Image" description="" />
 					
+					
+		<field
+			name="gmapkey"
+			type="text"
+			default ="AIzaSyAuUYoAYc4DI2WBwSevXMGhIwF1ql6mV4E"
+			label="Google Api-Key"
+			width ="100"
+			hint="GoogleMap Api-Key benötigt"
+			description="Google Api-Key"
+		 />
+		<field name="note_key_map" 
+			type="note" 
+			label="Bitte beantragen Sie hier einen eigenen Google-Api-Key:  https://console.developers.google.com" 
+			class="alert alert-warning" 
+			description=""
+		/>	
+					
+			<field 
+				name="zoom" 
+				type="integer" 
+				default="12" 
+				label="Zoom-Level bei Karte" 
+				description="Hier können Sie den Zoom-Level der Einsatzkarte festlegen z.b 12" 
+				first="1" 
+				last="18" 
+				step="1" />
+				
 			</fieldset>
 			<fieldset
 				name="advanced">
