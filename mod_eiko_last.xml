@@ -115,8 +115,12 @@ margin-bottom:10px !important;}
 .eiko_last_datum_uhrzeit_einsatzart_einsatzort_weiterlesen_span,
 .eiko_last_image  {
 padding-left:10px !important;}
+.eiko_last_karte_td  {
+padding-left:10px !important;
+}
 
-.eiko_last_image_td,
+
+.eiko_last_karte_td,
 .eiko_last_einsatzort_td,
 .eiko_last_einsatzart_td,
 .eiko_last_kurzbericht_td,
