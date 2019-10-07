@@ -5,13 +5,13 @@
 	client="site"
 	method="upgrade">
 	<name>mod_eiko_last</name>
-	<creationDate>2016-12-27</creationDate>
-    <copyright>Copyright (C) 2016. Alle Rechte vorbehalten.</copyright>
+	<creationDate>2019-10-07</creationDate>
+    <copyright>Copyright (C) 2019. Alle Rechte vorbehalten.</copyright>
     <license>GNU General Public License Version 2 oder später; siehe LICENSE.txt</license>
     <author>Ralf Meyer</author>
     <authorEmail>ralf.meyer@einsatzkomponente.de</authorEmail>
-    <authorUrl>http://einsatzkomponente.de</authorUrl>
-	<version>2.08</version>
+    <authorUrl>https://einsatzkomponente.de</authorUrl>
+	<version>2.10</version>
 
 	<description><![CDATA[<div style="border:1px solid #000; padding-left:5px;"><span style=" font-size: 18px; color:#F00;"><b>mod_eiko_last für J3.x</b></span><br/><br/><span style="font-size:10px;">Modul zur Anzeige der letzten Einsatzdaten auf einer Modulposition<br/><br/><b>Beschreibung:</b><br/><br/>In der Textbox ANZEIGE können folgende Parameter eingesetzt werden :<br/>
 	<ul>
@@ -173,7 +173,7 @@ margin-bottom:10px !important;}
 		<field
 			name="gmapkey"
 			type="text"
-			default ="AIzaSyAuUYoAYc4DI2WBwSevXMGhIwF1ql6mV4E"
+			default =""
 			label="Google Api-Key"
 			width ="100"
 			hint="GoogleMap Api-Key benötigt"
@@ -243,6 +243,6 @@ margin-bottom:10px !important;}
 <!-- UPDATESERVER DEFINITION -->
 	<updateservers>
 		<!-- Note: No spaces or linebreaks allowed between the server tags -->
-		<server type="extension" priority="1" name="mod_eiko_last">http://www.feuerwehr-veenhusen.de/update/mod_eiko_last-update.xml</server>
+		<server type="extension" priority="1" name="mod_eiko_last">https://einsatzkomponente.joomla100.com/update/mod_eiko_last-update.xml</server>
 	</updateservers>
 </extension>
