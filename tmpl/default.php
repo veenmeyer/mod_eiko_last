@@ -19,6 +19,7 @@ $document->addStyleSheet('components/com_einsatzkomponente/assets/css/einsatzkom
 require_once JPATH_SITE.'/administrator/components/com_einsatzkomponente/helpers/einsatzkomponente.php'; 
 
 $mymenuitem = $params->get('mymenuitem'); // Menü-Eintrag
+$einsatzfarbe = $params->get('einsatzfarbe',0); 
 
 
 $orga = $params->get('orga');
@@ -74,7 +75,7 @@ $fields = str_replace(' ','',$params->get('fields'));
 $fields = explode(",",$fields);
 
 ?>
-<table class="eiko_last_tab">
+<table class="eiko_last_tab eiko_last_tab_border<?php echo $a;?>">
 <?php
 $count_fields = count($fields);
 $i = 0;
@@ -142,11 +143,23 @@ while($i < $count_fields)
 			<?php echo '<small>Nr.'.EinsatzkomponenteHelper::ermittle_einsatz_nummer($curTime,$reports[$a]->data1).'/'.date('Y', $curTime).'</small>';?>
 			</span></td></tr><?php endif;
 		//echo $fields[$i].'<br/>';
+		
+
 $i++;
    }
 //$bodytag = str_replace("%body%", "schwarz", "<body text='%body%'>");
 
+if ($einsatzfarbe) {
+?>		
+<style type="text/css">
+.eiko_last_tab_border<?php echo $a;?> {
+    border-left: 10px solid <?php echo $reports[$a]->marker;?>;
+}
+</style>
+<?php
+}
 ?>
+
 </table>
 
 
